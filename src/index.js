@@ -10,13 +10,13 @@ import store from './components/store/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter>
+      <React.StrictMode>
         <App />
-      </BrowserRouter>
-    </Provider>
-  </React.StrictMode>,
+      </React.StrictMode>
+    </BrowserRouter>
+  </Provider>,
 );
 
 // If you want to start measuring performance in your app, pass a function

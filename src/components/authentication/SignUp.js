@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 import classes from './auth.module.css';
-import { wait } from '@testing-library/user-event/dist/utils';
 
-const SignUp = (props) => {
+const Signup = (props) => {
   const [enterEmail, setEnterEmail] = useState('');
-  const [enteredPassword, setEnteredPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [enterPassword, setEnterPassword] = useState('');
+  const [conPassword, setConPasword] = useState('');
 
-  const submitHandler = async (e) => {
-    e.preventDefault();
+  const submitHandler = async (event) => {
+    event.preventDefault();
 
-    if (enteredPassword === confirmPassword) {
+    if (enterPassword === conPassword) {
       try {
         const response = await fetch(
           'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCJEJQXRKSU3Y_zArycMPAC3dU7v2rlvMk',
@@ -19,68 +19,78 @@ const SignUp = (props) => {
             method: 'POST',
             body: JSON.stringify({
               email: enterEmail,
-              password: enteredPassword,
-              retureSecureToken: true,
+              password: enterPassword,
+              returnSecureToken: true,
             }),
             headers: {
-              'content-type': 'application/json',
+              'Content-Type': 'application/json',
             },
           },
         );
+
         if (response.ok) {
+          console.log('Succesfully Sign Up!!');
           const data = await response.json();
-          console.log(data)
+          console.log(data);
         } else {
           const data = await response.json();
-          let errmesg = 'Authentication failed';
+          let errMsg = 'Authentication Failed!!';
 
           if (data && data.error && data.error.message) {
-            errmesg = data.error.message;
+            errMsg = data.error.message;
           }
-          throw new Error(errmesg);
+
+          throw new Error(errMsg);
         }
       } catch (error) {
         alert(error.message);
       }
       setEnterEmail('');
-      setEnteredPassword('');
-      setConfirmPassword('');
+      setEnterPassword('');
+      setConPasword('');
       props.onShow();
     } else {
-      alert('Confirm entered not matching');
+      alert('Confirm Password Not matched!!');
     }
   };
 
   return (
     <div className={classes.card}>
+      <h3>Sign Up</h3>
       <Form onSubmit={submitHandler}>
-        <Form.Group className="mb-3">
-          <Form.Label>Email</Form.Label>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
           <Form.Control
             type="email"
-            placeholder="Enter Email address"
+            placeholder="Enter email"
             value={enterEmail}
             onChange={(event) => setEnterEmail(event.target.value)}
           />
+          <Form.Text className="text-muted">
+            <p>We'll never share your email with anyone else.</p>
+          </Form.Text>
         </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>New Password</Form.Label>
+
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Enter new password"
-            value={enteredPassword}
-            onChange={(event) => setEnteredPassword(event.target.value)}
+            placeholder="Password"
+            value={enterPassword}
+            onChange={(event) => setEnterPassword(event.target.value)}
           />
         </Form.Group>
+
         <Form.Group className="mb-3">
-          <Form.Label>Confirm New Password</Form.Label>
+          <Form.Label>Confirm Password</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Re-enter password"
-            value={confirmPassword}
-            onChange={(event) => setConfirmPassword(event.target.value)}
+            placeholder="Confirm password"
+            value={conPassword}
+            onChange={(event) => setConPasword(event.target.value)}
           />
         </Form.Group>
+
         <div className={classes.action}>
           <Button variant="primary" type="submit">
             Create Account
@@ -88,11 +98,11 @@ const SignUp = (props) => {
         </div>
         <div className={classes.toggle}>
           <span>Already have an account?</span>
-          <button onClick={props.onShow}>Login</button>
+          <button onClick={props.onShow}>LogIn</button>
         </div>
       </Form>
     </div>
   );
 };
 
-export default SignUp;
+export default Signup;

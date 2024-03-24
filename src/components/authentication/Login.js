@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 import classes from './auth.module.css';
 import { useDispatch } from 'react-redux';
 import { authAction } from '../store/authSlice';
@@ -8,11 +9,12 @@ import { useNavigate } from 'react-router-dom';
 const Login = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [enterEmail, setEnterEmail] = useState('');
-  const [enteredPassword, setEnteredPassword] = useState('');
 
-  const submitHandler = async (e) => {
-    e.preventDefault();
+  const [enterEmail, setEnterEmail] = useState('');
+  const [enterPassword, setEnterPassword] = useState('');
+
+  const submitHandler = async (event) => {
+    event.preventDefault();
 
     try {
       const response = await fetch(
@@ -21,7 +23,7 @@ const Login = (props) => {
           method: 'POST',
           body: JSON.stringify({
             email: enterEmail,
-            password: enteredPassword,
+            password: enterPassword,
             returnSecureToken: true,
           }),
           headers: {
@@ -31,14 +33,13 @@ const Login = (props) => {
       );
 
       if (response.ok) {
-        console.log('Successfully logged in');
+        console.log('Succesfully Log In!!');
         const data = await response.json();
         console.log(data);
-        console.log('Successfully logged in');
         dispatch(
           authAction.login({ tokenId: data.idToken, userEmail: data.email }),
         );
-        navigate('/welcome', { replace: true });
+        navigate('/profile/welcome', { replace: true });
       } else {
         const data = await response.json();
         let errMsg = 'Authentication Failed!!';
@@ -46,45 +47,51 @@ const Login = (props) => {
         if (data && data.error && data.error.message) {
           errMsg = data.error.message;
         }
+
         throw new Error(errMsg);
       }
     } catch (error) {
       alert(error.message);
     }
-
     setEnterEmail('');
-    setEnteredPassword('');
+    setEnterPassword('');
   };
 
   return (
     <div className={classes.card}>
+      <h3>Log In</h3>
       <Form onSubmit={submitHandler}>
-        <Form.Group className="mb-3">
-          <Form.Label>Email</Form.Label>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
           <Form.Control
             type="email"
-            placeholder="Enter Email address"
+            placeholder="Enter email"
             value={enterEmail}
             onChange={(event) => setEnterEmail(event.target.value)}
           />
+          <Form.Text className="text-muted">
+            <p>We'll never share your email with anyone else.</p>
+          </Form.Text>
         </Form.Group>
-        <Form.Group className="mb-3">
+
+        <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Enter password"
-            value={enteredPassword}
-            onChange={(event) => setEnteredPassword(event.target.value)}
+            placeholder="Password"
+            value={enterPassword}
+            onChange={(event) => setEnterPassword(event.target.value)}
           />
         </Form.Group>
+
         <div className={classes.action}>
           <Button variant="primary" type="submit">
-            Login
+            LogIn
           </Button>
         </div>
         <div className={classes.toggle}>
-          <span>Don't Have Account</span>
-          <button onClick={props.onHide}>SignUp</button>
+          <span>Don't have account?</span>
+          <button onClick={props.onHide}>create account</button>
         </div>
       </Form>
     </div>
