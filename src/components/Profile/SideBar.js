@@ -1,9 +1,15 @@
 import React from 'react';
 import classes from './SideBar.module.css';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { inboxFill } from '../store/inboxSlice';
 
 const SideBar = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+
+  const auth = useSelector((state) => state.auth)
+  const inboxEmail = useSelector((state) => state.inbox.inboxEmail)
 
   const showCompose = () => {
     navigate('/profile/compose', { replace: true });
@@ -11,7 +17,15 @@ const SideBar = () => {
 
   const showInbox = () => {
     navigate('/profile/inbox', { replace: true });
+    dispatch(inboxFill(auth.userEmail))
   };
+
+  let totalUnread = 0;
+  inboxEmail.forEach((message) => {
+    if (message[1].unread) {
+      totalUnread++;
+    }
+  });
 
   return (
     <div className={classes.content}>
