@@ -1,18 +1,21 @@
 import React from 'react';
 import classes from './Inbox.module.css';
-import { GoDotFill, GoDot } from 'react-icons/go';
 import { useDispatch, useSelector } from 'react-redux';
-import { inboxAction } from '../store/inboxSlice';
+import { RiDeleteBin6Line } from 'react-icons/ri';
+import { GoDotFill, GoDot } from 'react-icons/go';
 import { useNavigate } from 'react-router-dom';
+import { inboxAction } from '../store/inboxSlice';
 
 const Inbox = () => {
   const inboxEmails = useSelector((state) => state.inbox.inboxEmail);
-    const navigate = useNavigate()
+
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
 
   const clickHandler = async (item) => {
-    navigate('/profile/inbox.message', {replace: true})
+    console.log(item);
+    navigate('/profile/inbox/message', { replace: true });
     dispatch(inboxAction.addMessageOpen(item));
 
     const userEmail = auth.userEmail.replace(/[.@]/g, '');
@@ -31,12 +34,32 @@ const Inbox = () => {
             unread: false,
           }),
           headers: {
-            'content-type': 'application/json',
+            'Content-Type': 'application/json',
           },
         },
       );
       if (response.ok) {
-        console.log('message read');
+        console.log('message read succesfully');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const emailDeleteHandler = async (item) => {
+    dispatch(inboxAction.removeItem(item));
+
+    const userEmail = auth.userEmail.replace(/[.@]/g, '');
+
+    try {
+      const response = await fetch(
+        `https://mail-client-box-8b190-default-rtdb.firebaseio.com/${userEmail}/receiveEmail/${item[0]}.json`,
+        {
+          method: 'DELETE',
+        },
+      );
+      if (response.ok) {
+        console.log('message delete succesfuly!!');
       }
     } catch (error) {
       console.log(error);
@@ -67,6 +90,15 @@ const Inbox = () => {
               {message[1].subject}
             </div>
             <div className={classes.date}>{message[1].date}</div>
+            <button
+              className={classes.action}
+              onClick={(event) => {
+                event.stopPropagation();
+                emailDeleteHandler(message);
+              }}
+            >
+              <RiDeleteBin6Line />
+            </button>
           </li>
         ))}
       </ul>

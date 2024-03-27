@@ -86,7 +86,7 @@ const EmailComposer = () => {
     try {
       const receiverEmail = recipient.replace(/[.@]/g, '');
       const response = await fetch(
-        `https://mail-client-box-8b190-default-rtdb.firebaseio.com/x${receiverEmail}/receiveEmail.json`,
+        `https://mail-client-box-8b190-default-rtdb.firebaseio.com/${receiverEmail}/receiveEmail.json`,
         {
           method: 'POST',
           body: JSON.stringify({
