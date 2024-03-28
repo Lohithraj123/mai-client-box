@@ -14,10 +14,10 @@ const Home = () => {
         <Route path="/compose" element={<Compose />} />
         <Route path="/welcome" element={<Welcome />} />
         <Route path="/inbox" element={<Inbox />} />
-        <Route path="/sent" element={<SentBox />} />
+        <Route path="/sentbox" element={<SentBox />} />
       </Routes>
     </div>
   );
 };
-
+ 
 export default Home;

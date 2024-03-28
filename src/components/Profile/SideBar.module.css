@@ -1,10 +1,10 @@
 .content {
-  width: 200px; 
-  background-color: #f4f4f4; 
-  position: fixed; 
+  width: 200px;
+  background-color: #f4f4f4;
+  position: fixed;
   top: 60px;
   left: 0;
-  bottom: 0; 
+  bottom: 0;
   padding: 20px;
 }
 
@@ -13,11 +13,24 @@
 }
 
 .compose p {
-  margin: 0; 
-  font-weight: bold; 
+  margin: 0;
+  font-weight: bold;
   padding: 10px 0;
 }
 
 .compose:hover {
-  background-color: #ddd; 
+  background-color: #ddd;
+}
+.sent {
+  cursor: pointer;
+}
+
+.sent p {
+  margin: 0;
+  font-weight: bold;
+  padding: 10px 0;
+}
+
+.sent:hover {
+  background-color: #ddd;
 }
