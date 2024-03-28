@@ -6,10 +6,10 @@ import { inboxFill } from '../store/inboxSlice';
 
 const SideBar = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const auth = useSelector((state) => state.auth)
-  const inboxEmail = useSelector((state) => state.inbox.inboxEmail)
+  const auth = useSelector((state) => state.auth);
+  const inboxEmail = useSelector((state) => state.inbox.inboxEmail);
 
   const showCompose = () => {
     navigate('/profile/compose', { replace: true });
@@ -17,8 +17,12 @@ const SideBar = () => {
 
   const showInbox = () => {
     navigate('/profile/inbox', { replace: true });
-    dispatch(inboxFill(auth.userEmail))
+    dispatch(inboxFill(auth.userEmail));
   };
+
+  const showSentBox = () => {
+    navigate('/profile/sentbox', {replace: true})
+  }
 
   let totalUnread = 0;
   inboxEmail.forEach((message) => {
@@ -33,7 +37,11 @@ const SideBar = () => {
         <p>Compose Email</p>
       </div>
       <div className={classes.compose} onClick={showInbox}>
-        <p>Inbox</p>
+        <p>Inbox{''}</p>
+        <span>{totalUnread}</span>
+      </div>
+      <div className={classes.sent} onClick={showSentBox}>
+        <p>Sent</p>
       </div>
     </div>
   );
