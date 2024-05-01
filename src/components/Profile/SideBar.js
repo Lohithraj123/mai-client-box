@@ -33,7 +33,7 @@ const SideBar = () => {
 
   return (
     <div className={classes.content}>
-      <div className={classes.compose} onClick={showCompose}>
+      <div className={classes.composed} onClick={showCompose}>
         <p>Compose Email</p>
       </div>
       <div className={classes.compose} onClick={showInbox}>

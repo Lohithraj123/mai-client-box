@@ -14,8 +14,10 @@ const Header = () => {
   const user = localStorage.getItem('email').split('@')[0];
 
   const logoutHandler = () => {
-    dispatch(authAction.logout());
-    navigate('/', { replace: true });
+    if (window.confirm('Are you Sure you want to Logout')) {
+      dispatch(authAction.logout());
+      navigate('/', { replace: true });
+    }
   };
 
   const showWelcome = () => {
