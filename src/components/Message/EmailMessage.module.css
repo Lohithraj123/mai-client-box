@@ -6,15 +6,12 @@
   margin: 1px;
   max-width: 900px;
   margin: 3rem auto;
-  margin-left: 1000px;
   background-color: whitesmoke;
   border-radius: 0rem 1.5rem 1.5rem 1.5rem;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-  margin-left: 1000px;
 }
 .messageCon h1 {
   padding: 2rem;
-  margin-left: 1000px;
 }
 .msgContent {
   /* padding: 3rem; */

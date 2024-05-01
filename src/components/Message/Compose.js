@@ -43,7 +43,7 @@ const EmailComposer = () => {
     try {
       const senderEmail = auth.userEmail.replace(/[.@]/g, '');
       const response = await fetch(
-        `https://mail-client-box-8b190-default-rtdb.firebaseio.com/${senderEmail}/sendEmail.json`,
+        `https://mail-client-box-c8702-default-rtdb.firebaseio.com/${senderEmail}/sendEmail.json`,
         {
           method: 'POST',
           body: JSON.stringify({
@@ -86,7 +86,7 @@ const EmailComposer = () => {
     try {
       const receiverEmail = recipient.replace(/[.@]/g, '');
       const response = await fetch(
-        `https://mail-client-box-8b190-default-rtdb.firebaseio.com/${receiverEmail}/receiveEmail.json`,
+        `https://mail-client-box-c8702-default-rtdb.firebaseio.com/${receiverEmail}/receiveEmail.json`,
         {
           method: 'POST',
           body: JSON.stringify({
@@ -135,7 +135,7 @@ const EmailComposer = () => {
     <div className={classes.emailComposerContainer}>
       {successFullySentMail && (
         <div className={classes.succesfulMsg}>
-          <p style={{ color: 'green' }}>SuccessFully sent mail.</p>
+          <p className={classes.popup}>SuccessFully sent mail.</p>
         </div>
       )}
       <div className={classes.compose}>

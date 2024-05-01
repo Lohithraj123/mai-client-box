@@ -14,7 +14,7 @@ const Signup = (props) => {
     if (enterPassword === conPassword) {
       try {
         const response = await fetch(
-          'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCJEJQXRKSU3Y_zArycMPAC3dU7v2rlvMk',
+          'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBnJD4N38PB6T-KB5CK4XgJ8uUzD5MsDYU',
           {
             method: 'POST',
             body: JSON.stringify({
@@ -98,7 +98,7 @@ const Signup = (props) => {
         </div>
         <div className={classes.toggle}>
           <span>Already have an account?</span>
-          <button onClick={props.onShow}>LogIn</button>
+          <button onClick={props.onShow}>Login</button>
         </div>
       </Form>
     </div>

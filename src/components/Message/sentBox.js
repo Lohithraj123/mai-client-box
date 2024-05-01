@@ -25,7 +25,7 @@ const SentBox = () => {
 
     try {
       const response = await fetch(
-        `https://mail-client-box-8b190-default-rtdb.firebaseio.com/${userEmail}/sendEmail/${item[0]}.json`,
+        `https://mail-client-box-c8702-default-rtdb.firebaseio.com//${userEmail}/sendEmail/${item[0]}.json`,
         {
           method: 'DELETE',
         },

@@ -18,7 +18,7 @@ const Login = (props) => {
 
     try {
       const response = await fetch(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCJEJQXRKSU3Y_zArycMPAC3dU7v2rlvMk',
+        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBnJD4N38PB6T-KB5CK4XgJ8uUzD5MsDYU',
         {
           method: 'POST',
           body: JSON.stringify({
@@ -69,9 +69,7 @@ const Login = (props) => {
             value={enterEmail}
             onChange={(event) => setEnterEmail(event.target.value)}
           />
-          <Form.Text className="text-muted">
-            <p>We'll never share your email with anyone else.</p>
-          </Form.Text>
+          <Form.Text className="text-muted"></Form.Text>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -86,7 +84,7 @@ const Login = (props) => {
 
         <div className={classes.action}>
           <Button variant="primary" type="submit">
-            LogIn
+            Login
           </Button>
         </div>
         <div className={classes.toggle}>

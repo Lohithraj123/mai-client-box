@@ -35,7 +35,7 @@ const Header = () => {
               Signed in as: <a href="#login">{user}</a>
             </Navbar.Text>
             <div className={classes.action}>
-              <Button onClick={logoutHandler}>logOut</Button>
+              <Button onClick={logoutHandler}>logout</Button>
             </div>
           </Navbar.Collapse>
         </Container>

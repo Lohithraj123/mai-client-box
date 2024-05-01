@@ -21,8 +21,8 @@ const SideBar = () => {
   };
 
   const showSentBox = () => {
-    navigate('/profile/sentbox', {replace: true})
-  }
+    navigate('/profile/sentbox', { replace: true });
+  };
 
   let totalUnread = 0;
   inboxEmail.forEach((message) => {
@@ -38,6 +38,7 @@ const SideBar = () => {
       </div>
       <div className={classes.compose} onClick={showInbox}>
         <p>Inbox{''}</p>
+        <nobr />
         <span>{totalUnread}</span>
       </div>
       <div className={classes.sent} onClick={showSentBox}>

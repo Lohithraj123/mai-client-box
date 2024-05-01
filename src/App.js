@@ -23,7 +23,7 @@ function App() {
       dispatch(sentboxFill(localStorage.getItem('email')));
       console.log('render');
     }
-  }, 20000);
+  }, 2000);
 
   return (
     <div className="App">
@@ -36,3 +36,5 @@ function App() {
 }
 
 export default App;
+
+

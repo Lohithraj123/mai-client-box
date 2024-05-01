@@ -22,7 +22,7 @@ const Inbox = () => {
 
     try {
       const response = await fetch(
-        `https://mail-client-box-8b190-default-rtdb.firebaseio.com/${userEmail}/receiveEmail/${item[0]}.json`,
+        `https://mail-client-box-c8702-default-rtdb.firebaseio.com/${userEmail}/receiveEmail/${item[0]}.json`,
         {
           method: 'PUT',
           body: JSON.stringify({
@@ -53,7 +53,7 @@ const Inbox = () => {
 
     try {
       const response = await fetch(
-        `https://mail-client-box-8b190-default-rtdb.firebaseio.com/${userEmail}/receiveEmail/${item[0]}.json`,
+        `https://mail-client-box-c8702-default-rtdb.firebaseio.com/${userEmail}/receiveEmail/${item[0]}.json`,
         {
           method: 'DELETE',
         },

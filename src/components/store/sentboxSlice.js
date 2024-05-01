@@ -33,7 +33,7 @@ export const sentboxFill = (email) => {
     try {
       const user = email.replace(/[.@]/g, '');
       const response = await fetch(
-        `https://mail-client-box-8b190-default-rtdb.firebaseio.com/${user}/sendEmail.json`,
+        `https://mail-client-box-c8702-default-rtdb.firebaseio.com/${user}/sendEmail.json`,
       );
       if (response.ok) {
         const data = await response.json();

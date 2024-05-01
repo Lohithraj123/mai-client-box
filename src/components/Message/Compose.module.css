@@ -1,8 +1,9 @@
 .emailComposerContainer {
   display: flex;
+  position: absolute;
   margin-top: 20px;
   width: 1100px;
-  height: 600px;
+  height: 650px;
   border: 1px solid black;
   margin-left: 300px;
   border-radius: 10px;
@@ -10,7 +11,8 @@
 }
 
 .compose {
-  margin-top: 20px;
+  margin-top: 60px;
+  position: fixed;
 }
 
 .form {
@@ -19,7 +21,7 @@
 }
 
 .emailInput {
-  width: 100%;
+  width: 92%;
   padding: 10px;
   margin-top: 5px;
   border: 1px solid #ccc;
@@ -29,6 +31,7 @@
 
 .rdwEditorWrapper {
   margin-top: 20px;
+  width: 92%;
 }
 
 .sendButton {
@@ -37,10 +40,13 @@
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
+  width: 92%;
   font-size: 16px;
   cursor: pointer;
 }
 
 .succesfulMsg {
-  margin-top: 10px;
+  position: relative;
+  margin-left: 400px;
+  color: green;
 }
